@@ -7,17 +7,58 @@ using webApiProJect;
 /// </summary>
 [ApiController] //APIコントローラーを示す属性
 [Route($"api/{buildsettings.version}/[controller]/[action]")] //ルーティングの設定
-public class SampleController : Controller
+public class SampleController : ControllerBase
 {
     /// <summary>
-    /// Hello Worldを返却
+    /// 受け取った文字にHelloを付けて返却
     /// </summary>
+    /// <param name="text"></param>
     /// <returns></returns>
     [HttpGet] //HTTPのGETメソッドを示す属性
-    //「api/v1/Sample/Search」 にアクセスされたときに呼び出される
-    public JsonResult Search()
+    //「api/buildsettings.version/Sample/Get」 にアクセスされたときに呼び出される
+    // [FromQuery]を使用することで、クエリパラメータを受け取ることができる
+    public JsonResult Get([FromQuery] string text)
     {
-        //返却
-        return new JsonResult("Hello World");
+        return new JsonResult("Hello " + text);
     }
+
+    /// <summary>
+    /// 受け取った文字にHelloを付けて返却
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
+    [HttpPost]//HTTPのPOSTメソッドを示す属性
+    //「api/buildsettings.version/Sample/Post」 にアクセスされたときに呼び出される
+    // [FromBody]を使用することで、リクエストボディを受け取ることができる
+    public JsonResult Post([FromBody] SampleModel sample)
+    {
+        return new JsonResult("Hello " + sample.Name);
+    }
+
+    /// <summary>
+    /// 受け取った文字にHelloを付けて返却
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
+    [HttpPut] //HTTPのPUTメソッドを示す属性
+    //「api/buildsettings.version/Sample/Put」 にアクセスされたときに呼び出される
+    // [FromBody]を使用することで、クエリパラメータを受け取ることができる
+    public JsonResult Put([FromBody] string text)
+    {
+        return new JsonResult("Hello " + text);
+    }
+
+    /// <summary>
+    /// 受け取ったIDに対応するデータを削除
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpDelete] //HTTPのDELETEメソッドを示す属性
+    //「api/buildsettings.version/Sample/Delete」 にアクセスされたときに呼び出される
+    // [FromBody]を使用することで、クエリパラメータを受け取ることができる
+    public JsonResult Delete([FromBody] int id)
+    {
+        return new JsonResult("Deleted data with ID: " + id);
+    }
+
 }

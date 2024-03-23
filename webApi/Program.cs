@@ -9,19 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 // 作成したコントローラを追加して使用できるように
 //AddControllerなしにmapできないので注意
 //何も設定を加えない場合
-//builder.Services.AddControllers();
+builder.Services.AddControllers();
 
 //現在の認証ユーザーインスタンス
-var requireAuthenticatedUser = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-//コントローラに共通の設定を加える場合
-builder.Services.AddControllers(options =>
-{
-   //[Authorize]属性を全てのコントローラに付与
-   //認証済みユーザしかコントローラは使用できない
-   //[allowAnonymous]属性付与コントローラは、認証なしに使用可能
-   //設定を追加
-    options.Filters.Add(new AuthorizeFilter(requireAuthenticatedUser));
-});
+// var requireAuthenticatedUser = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+// コントローラに共通の設定を加える場合
+// builder.Services.AddControllers(options =>
+// {
+//    //[Authorize]属性を全てのコントローラに付与
+//    //認証済みユーザしかコントローラは使用できない
+//    //[allowAnonymous]属性付与コントローラは、認証なしに使用可能
+//    //設定を追加
+//     options.Filters.Add(new AuthorizeFilter(requireAuthenticatedUser));
+// });
 
 //swaggerを使うための設定
 builder.Services.AddSwaggerGen();
@@ -45,26 +45,26 @@ builder.Services.AddDistributedMemoryCache();
 
 //認証設定
 //cookie認証スキーム(雛形)を追加
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => {
+// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => {
 
-    //Cookie有効時間設定
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(400);
+//     //Cookie有効時間設定
+//     options.ExpireTimeSpan = TimeSpan.FromMinutes(400);
 
-    //認証チャレンジは、認証されていないユーザーが認証を必要とするエンドポイントを要求したときのリダイレクト先
-    options.LoginPath = "/AuthError";
+//     //認証チャレンジは、認証されていないユーザーが認証を必要とするエンドポイントを要求したときのリダイレクト先
+//     options.LoginPath = "/AuthError";
 
-    //タイムアウト間隔の半分以上が経過した場合、有効な認証 Cookie の有効期限をリセットし再発行　
-    options.SlidingExpiration = true;
-});
+//     //タイムアウト間隔の半分以上が経過した場合、有効な認証 Cookie の有効期限をリセットし再発行　
+//     options.SlidingExpiration = true;
+// });
 
 //承認設定
 //ある一定のユーザーだけが使用できるAPIなどを作成する時はここで制御(ロールの制御)
-builder.Services.AddAuthorization(options => {
-    //フォールバック ポリシーは、コントローラーで他のポリシーまたは属性が指定されていない場合
-    //承認ミドルウェアが設定したフォールバックポリシーを使用する
-    //現在設定されているのが認証ユーザー以外ははじかれる
-    options.FallbackPolicy = requireAuthenticatedUser;
-});
+// builder.Services.AddAuthorization(options => {
+//     //フォールバック ポリシーは、コントローラーで他のポリシーまたは属性が指定されていない場合
+//     //承認ミドルウェアが設定したフォールバックポリシーを使用する
+//     //現在設定されているのが認証ユーザー以外ははじかれる
+//     options.FallbackPolicy = requireAuthenticatedUser;
+// });
 
 //CORS設定
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
