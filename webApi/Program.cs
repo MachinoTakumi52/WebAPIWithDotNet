@@ -14,21 +14,18 @@ var builder = WebApplication.CreateBuilder(args);
 //現在の認証ユーザーインスタンス
 var requireAuthenticatedUser = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 //コントローラに共通の設定を加える場合
-//builder.Services.AddControllers(options =>
-//{
-//    //[Authorize]属性を全てのコントローラに付与
-//    //認証済みユーザしかコントローラは使用できない
-//    //[allowAnonymous]属性付与コントローラは、認証なしに使用可能
-//    //設定を追加
-//    options.Filters.Add(new AuthorizeFilter(requireAuthenticatedUser));
-//});
+builder.Services.AddControllers(options =>
+{
+   //[Authorize]属性を全てのコントローラに付与
+   //認証済みユーザしかコントローラは使用できない
+   //[allowAnonymous]属性付与コントローラは、認証なしに使用可能
+   //設定を追加
+    options.Filters.Add(new AuthorizeFilter(requireAuthenticatedUser));
+});
 
-//minimal API用　app.MapGet("/", () => "Hello World!")　てきな
-//小規模なAPIサーバーを作るのであればよさそうだが、、、
-// builder.Services.AddEndpointsApiExplorer();
-
-//swagger generator追加
+//swaggerを使うための設定
 builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer();
 
 //  分散キャッシュ設定
 //https://noxi515.hateblo.jp/entry/2018/09/02/194901
@@ -163,9 +160,9 @@ app.UseSession();
 //今回は属性ルーティング(WebAPI)のためいらない
 //規則を定義してそれをエンドポイントに追加する
 //MapDefaultControllerRoute()は規約の定義を追加するメソッド
-// app.MapDefaultControllerRoute();
+//app.MapDefaultControllerRoute();
 
-// コントローラーで定義したアクションをエンドポイントに追加する
+// コントローラーで定義したアクション名をエンドポイントとして設定する
 // https://blog.beachside.dev/entry/2020/12/23/144444
 app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
