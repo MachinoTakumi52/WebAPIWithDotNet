@@ -7,7 +7,7 @@ using webApiProJect;
 /// </summary>
 [ApiController] //APIコントローラーを示す属性
 [Route($"api/{buildsettings.version}/[controller]/[action]")] //ルーティングの設定
-public class SampleController : ControllerBase
+public class SampleController : ControllerBase //コントローラークラスはControllerBaseを継承する必要あり
 {
     /// <summary>
     /// 受け取った文字にHelloを付けて返却
