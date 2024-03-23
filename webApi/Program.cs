@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using webApi.Const;
+using webApi.Consts;
 
 //builderê∂ê¨
 var builder = WebApplication.CreateBuilder(args);

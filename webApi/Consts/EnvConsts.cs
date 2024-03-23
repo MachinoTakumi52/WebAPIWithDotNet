@@ -1,4 +1,4 @@
-﻿namespace webApi.Const
+﻿namespace webApi.Consts
 {
     public class EnvConsts
     {
