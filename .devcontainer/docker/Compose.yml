@@ -1,0 +1,10 @@
+name: web-api-dotnet
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../../:/workspace:cached
+    tty: true

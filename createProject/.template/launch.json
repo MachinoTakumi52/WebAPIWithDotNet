@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Coreデバッグ",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/$PROJECT_NAME/bin/Debug/$FRAMEWORK_VERSION/$PROJECT_NAME.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/$PROJECT_NAME",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      // Web API起動後の自動ブラウザ起動設定
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on: (https?://\\S+)"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}

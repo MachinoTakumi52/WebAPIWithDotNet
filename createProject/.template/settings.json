@@ -1,0 +1,11 @@
+{
+  "omnisharp.projectLoadTimeout": 60,
+  "csharp.suppressDotnetInstallWarning": true,
+  "csharp.format.enable": true,
+  "editor.formatOnSave": true,
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "omnisharp.useModernNet": true,
+  "dotnet.defaultSolution": "$PROJECT_NAME.sln"
+}
