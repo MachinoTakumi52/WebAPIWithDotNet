@@ -32,12 +32,15 @@ TODO サンプルファイル配置
 - launch.json(vsCode デバッグ設定)
 - settings.json(vsCode 設定)
 - tasks.json(vsCode デバッグ設定)
-- Program.cs(エントリーファイル)
 - appsetting.json(システム環境変数)
+- Program.cs(エントリーファイル)
+- SampleContrller.cs(サンプルコントローラー)
+- SampleModels.cs(サンプルモデル)
 
 ## ファイル構成
 
 TODO API アーキテクチャの選定の反映
+TODO アプリバージョンをどう管理するか
 
 ```bash
 solutionName
