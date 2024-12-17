@@ -82,6 +82,31 @@ mkdir -p "Utility"
 # Program.csファイルを削除して .createProject/template からコピー
 rm Program.cs
 cp "$TEMPLATE_DIR"/Program.cs .
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" Program.cs
+
+# サンプルController
+cp "$TEMPLATE_DIR"/SampleController.cs ./Controllers/
+# ErrorController(共通ハンドラ)
+cp "$TEMPLATE_DIR"/ErrorController.cs ./Controllers/
+# サンプルModel
+cp "$TEMPLATE_DIR"/SampleModel.cs ./Models/
+# EnvConsts(環境変数)
+cp "$TEMPLATE_DIR"/EnvConsts.cs ./Consts/
+# TODO 定数
+# TODO Utility
+# TODO フォルダ構成で必要になったものを追加
+
+cd ..
+
+# ビルドファイル作成 TODO 後で消すかも
+cp "$TEMPLATE_DIR"/buildsettings.cs .
+# appsettings.json 作成
+rm "$TEMPLATE_DIR"/appsettings.json
+cp "$TEMPLATE_DIR"/appsettings.json .
+# appsettings.Development.json 作成
+rm "$TEMPLATE_DIR"/appsettings.Development.json
+cp "$TEMPLATE_DIR"/appsettings.Development.json .
+
 
 echo "テンプレートファイル作成しました。"
 exit 1
