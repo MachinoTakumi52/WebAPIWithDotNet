@@ -61,8 +61,10 @@ sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" /"$PROJECT_DIR"/"$VS_CODE_DIR"/launch.js
 sed -i "s/FRAMEWORK_VERSION/$FRAMEWORK_VERSION/g" /"$PROJECT_DIR"/"$VS_CODE_DIR"/launch.json
 # tasks.json 作成 (プロジェクトのビルドやテスト用)
 cp "$TEMPLATE_DIR"/tasks.json /"$PROJECT_DIR"/"$VS_CODE_DIR"/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" /"$PROJECT_DIR"/"$VS_CODE_DIR"/tasks.json
 # settings.json 作成 (OmniSharpやC# FormatterなどVS Code用設定)
 cp "$TEMPLATE_DIR"/settings.json /"$PROJECT_DIR"/"$VS_CODE_DIR"/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" /"$PROJECT_DIR"/"$VS_CODE_DIR"/settings.json
 
 echo "VS Codeの設定ファイルが作成されました。"
 
@@ -75,6 +77,11 @@ mkdir -p "Services"
 mkdir -p "Models"
 mkdir -p "Consts"
 mkdir -p "Utility"
+
+# サンプルファイル作成
+# Program.csファイルを削除して .createProject/template からコピー
+rm Program.cs
+cp "$TEMPLATE_DIR"/Program.cs .
 
 echo "テンプレートファイル作成しました。"
 exit 1
