@@ -11,13 +11,10 @@ devcontainer → docker → Dockerfile 内「dotnet sdk 設定」に使用した
   FROM mcr.microsoft.com/dotnet/sdk:8.0
 ```
 
-### 下記のコマンドを「/workspace」で実行
-
-TODO 自動化
+### 下記のコマンド bash で実行
 
 ```sh
-chmod +x /workspace/createProject/newDotnetProject.sh
-/workspace/createProject/newDotnetProject.sh
+/workspace/.createProject/newDotnetProject.sh
 ```
 
 ### vsCode 設定の反映のためウィンドの再読み込みを行う
@@ -30,11 +27,17 @@ ctrl + shift + P
 
 ### テンプレート
 
-TODO
+TODO サンプルファイル配置
+
+- launch.json(vsCode デバッグ設定)
+- settings.json(vsCode 設定)
+- tasks.json(vsCode デバッグ設定)
+- Program.cs(エントリーファイル)
+- appsetting.json(システム環境変数)
 
 ## ファイル構成
 
-TODO
+TODO API アーキテクチャの選定の反映
 
 ```bash
 solutionName
@@ -59,7 +62,7 @@ https://www.nuget.org/
 
 ### 環境設定ファイル
 
-TODO
+TODO もうちょいうまいことしたい
 `appsetting.json`ファイルに環境設定を参照している  
 追加する際は、上記のファイルに環境変数を入力後`EnvConsts`ファイルにプロパティを追加
 
@@ -82,6 +85,7 @@ TODO
 デバッグポイント有効
 ホットリロード有効(Program.cs 修正時は、再デバッグが必要)
 
-## デプロイ
+## ビルド/デプロイ
 
-TODO
+TODO ビルド
+TODO デプロイ
