@@ -16,8 +16,8 @@ devcontainer → docker → Dockerfile 内「dotnet sdk 設定」に使用した
 TODO 自動化
 
 ```sh
-chmod +x newDotnetProject.sh
-./createProject newDotnetProject.sh
+chmod +x /workspace/createProject/newDotnetProject.sh
+/workspace/createProject/newDotnetProject.sh
 ```
 
 ### vsCode 設定の反映のためウィンドの再読み込みを行う

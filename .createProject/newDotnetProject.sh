@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e  # エラーが発生した場合、スクリプトを終了するオプション
 
+# テンプレートディレクトリ
+TEMPLATE_DIR="/workspace/.createProject/template"
+
 # 現在の .NET バージョンを取得
 INSTALLED_VERSION=$(dotnet --version)
 
@@ -52,9 +55,15 @@ VS_CODE_DIR=".vscode"
 # ディレクトリ作成
 mkdir -p "$VS_CODE_DIR"
 
-# TODO:launch.json 作成
-# TODO:tasks.json 作成 (プロジェクトのビルドやテスト用)
-# TODO:settings.json 作成 (OmniSharpやC# FormatterなどVS Code用設定)
+# launch.json 作成
+cp "$TEMPLATE_DIR"/launch.json /"$PROJECT_DIR"/"$VS_CODE_DIR"/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" /"$PROJECT_DIR"/"$VS_CODE_DIR"/launch.json
+sed -i "s/FRAMEWORK_VERSION/$FRAMEWORK_VERSION/g" /"$PROJECT_DIR"/"$VS_CODE_DIR"/launch.json
+# tasks.json 作成 (プロジェクトのビルドやテスト用)
+cp "$TEMPLATE_DIR"/tasks.json /"$PROJECT_DIR"/"$VS_CODE_DIR"/
+# settings.json 作成 (OmniSharpやC# FormatterなどVS Code用設定)
+cp "$TEMPLATE_DIR"/settings.json /"$PROJECT_DIR"/"$VS_CODE_DIR"/
+
 echo "VS Codeの設定ファイルが作成されました。"
 
 # プロジェクトディレクトリに移動

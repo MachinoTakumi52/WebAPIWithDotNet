@@ -6,9 +6,9 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/$PROJECT_NAME/bin/Debug/$FRAMEWORK_VERSION/$PROJECT_NAME.dll",
+      "program": "${workspaceFolder}/PROJECT_NAME/bin/Debug/FRAMEWORK_VERSION/PROJECT_NAME.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/$PROJECT_NAME",
+      "cwd": "${workspaceFolder}/PROJECT_NAME",
       "stopAtEntry": false,
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
