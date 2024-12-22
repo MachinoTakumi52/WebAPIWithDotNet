@@ -49,7 +49,13 @@ solutionName
 |
 |__Controllers コントローラー
 |
-|__Models モデル 　
+|__Services サービス
+|
+|__Repositories リポジトリ
+|
+|__Models モデル
+|  |
+|  |__DTO データ転送オブジェクト
 |
 |__Properties デバッグ設定ファイル格納フォルダ
 ```

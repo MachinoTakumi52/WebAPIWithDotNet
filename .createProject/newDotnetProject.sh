@@ -74,9 +74,13 @@ cd "$REQUIRED_DIR/$PROJECT_NAME"
 # 必要フォルダ作成
 mkdir -p "Controllers"
 mkdir -p "Services"
-mkdir -p "Models"
 mkdir -p "Consts"
 mkdir -p "Utility"
+mkdir -p "Models"
+cd "Models"
+mkdir -p "Entities"
+mkdir -p "Dtos"
+cd ..
 
 # サンプルファイル作成
 # Program.csファイルを削除して .createProject/template からコピー
@@ -94,6 +98,8 @@ cp "$TEMPLATE_DIR"/SampleModel.cs ./Models/
 cp "$TEMPLATE_DIR"/EnvConsts.cs ./Consts/
 # TODO 定数
 # TODO Utility
+# TODO サービス
+# TODO リポジトリ
 # TODO フォルダ構成で必要になったものを追加
 
 cd ..
