@@ -74,6 +74,7 @@ cd "$REQUIRED_DIR/$PROJECT_NAME"
 # 必要フォルダ作成
 mkdir -p "Controllers"
 mkdir -p "Services"
+mkdir -p "Repositories"
 mkdir -p "Consts"
 mkdir -p "Utility"
 mkdir -p "Models"
@@ -94,7 +95,7 @@ cp "$TEMPLATE_DIR"/SampleController.cs ./Controllers/
 cp "$TEMPLATE_DIR"/ErrorController.cs ./Controllers/
 # サンプルModel
 cp "$TEMPLATE_DIR"/SampleModel.cs ./Models/
-# EnvConsts(環境変数)
+# EnvConsts(環境変数取得用定数)
 cp "$TEMPLATE_DIR"/EnvConsts.cs ./Consts/
 # TODO 定数
 # TODO Utility
@@ -104,14 +105,12 @@ cp "$TEMPLATE_DIR"/EnvConsts.cs ./Consts/
 
 cd ..
 
-# ビルドファイル作成 TODO 後で消すかも
-cp "$TEMPLATE_DIR"/buildsettings.cs .
 # appsettings.json 作成
-rm "$TEMPLATE_DIR"/appsettings.json
-cp "$TEMPLATE_DIR"/appsettings.json .
+rm "$REQUIRED_DIR/$PROJECT_NAME"/appsettings.json
+cp "$TEMPLATE_DIR"/appsettings.json ./"$PROJECT_NAME"/
 # appsettings.Development.json 作成
-rm "$TEMPLATE_DIR"/appsettings.Development.json
-cp "$TEMPLATE_DIR"/appsettings.Development.json .
+rm "$REQUIRED_DIR/$PROJECT_NAME"/appsettings.Development.json
+cp "$TEMPLATE_DIR"/appsettings.Development.json ./"$PROJECT_NAME"/
 
 
 echo "テンプレートファイル作成しました。"

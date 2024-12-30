@@ -1,169 +1,169 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using PROJECT_NAME.Consts;
 
-//builder¶¬
+//builderç”Ÿæˆ
 var builder = WebApplication.CreateBuilder(args);
 
-// ì¬‚µ‚½ƒRƒ“ƒgƒ[ƒ‰‚ğ’Ç‰Á‚µ‚Äg—p‚Å‚«‚é‚æ‚¤‚É
-//AddController‚È‚µ‚Émap‚Å‚«‚È‚¢‚Ì‚Å’ˆÓ
-//‰½‚àİ’è‚ğ‰Á‚¦‚È‚¢ê‡
+// ä½œæˆã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’è¿½åŠ ã—ã¦ä½¿ç”¨ã§ãã‚‹ã‚ˆã†ã«
+//AddControllerãªã—ã«mapã§ããªã„ã®ã§æ³¨æ„
+//ä½•ã‚‚è¨­å®šã‚’åŠ ãˆãªã„å ´åˆ
 builder.Services.AddControllers();
 
-//Œ»İ‚Ì”FØƒ†[ƒU[ƒCƒ“ƒXƒ^ƒ“ƒX
+//ç¾åœ¨ã®èªè¨¼ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 // var requireAuthenticatedUser = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-// ƒRƒ“ƒgƒ[ƒ‰‚É‹¤’Ê‚Ìİ’è‚ğ‰Á‚¦‚éê‡
+// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã«å…±é€šã®è¨­å®šã‚’åŠ ãˆã‚‹å ´åˆ
 // builder.Services.AddControllers(options =>
 // {
-//    //[Authorize]‘®«‚ğ‘S‚Ä‚ÌƒRƒ“ƒgƒ[ƒ‰‚É•t—^
-//    //”FØÏ‚İƒ†[ƒU‚µ‚©ƒRƒ“ƒgƒ[ƒ‰‚Íg—p‚Å‚«‚È‚¢
-//    //[allowAnonymous]‘®«•t—^ƒRƒ“ƒgƒ[ƒ‰‚ÍA”FØ‚È‚µ‚Ég—p‰Â”\
-//    //İ’è‚ğ’Ç‰Á
+//    //[Authorize]å±æ€§ã‚’å…¨ã¦ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã«ä»˜ä¸
+//    //èªè¨¼æ¸ˆã¿ãƒ¦ãƒ¼ã‚¶ã—ã‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¯ä½¿ç”¨ã§ããªã„
+//    //[allowAnonymous]å±æ€§ä»˜ä¸ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¯ã€èªè¨¼ãªã—ã«ä½¿ç”¨å¯èƒ½
+//    //è¨­å®šã‚’è¿½åŠ 
 //     options.Filters.Add(new AuthorizeFilter(requireAuthenticatedUser));
 // });
 
-//swagger‚ğg‚¤‚½‚ß‚Ìİ’è
+//swaggerã‚’ä½¿ã†ãŸã‚ã®è¨­å®š
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 
-//  •ªUƒLƒƒƒbƒVƒ…İ’è
+//  åˆ†æ•£ã‚­ãƒ£ãƒƒã‚·ãƒ¥è¨­å®š
 //https://noxi515.hateblo.jp/entry/2018/09/02/194901
-//3‚Â‚ÌÀ‘•‚ª‚ ‚é
-//EƒCƒ“ƒƒ‚ƒŠ•ªUƒLƒƒƒbƒVƒ…
-//•¡”‘ä‚ÉƒXƒP[ƒ‹‚µ‚È‚¢‚±‚Æ‚ªŠmÀ‚Èê‡‚Ì‚İg—p
-//•ªUƒLƒƒƒbƒVƒ…‚È‚Ì‚ÉAAA
+//3ã¤ã®å®Ÿè£…ãŒã‚ã‚‹
+//ãƒ»ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªåˆ†æ•£ã‚­ãƒ£ãƒƒã‚·ãƒ¥
+//è¤‡æ•°å°ã«ã‚¹ã‚±ãƒ¼ãƒ«ã—ãªã„ã“ã¨ãŒç¢ºå®Ÿãªå ´åˆã®ã¿ä½¿ç”¨
+//åˆ†æ•£ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãªã®ã«ã€ã€ã€
 //
-//ESQLServer•ªUƒLƒƒƒbƒVƒ…
-//DB‚ªSQLServer‚ÌAƒLƒƒƒbƒVƒ…—p‚Ìƒe[ƒuƒ‹‚ğì¬‚µ‚ÄƒLƒƒƒbƒVƒ…‚ğ“o˜^‚·‚é‚±‚Æ‚ª‚Å‚«‚é
+//ãƒ»SQLServeråˆ†æ•£ã‚­ãƒ£ãƒƒã‚·ãƒ¥
+//DBãŒSQLServerã®æ™‚ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã—ã¦ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç™»éŒ²ã™ã‚‹ã“ã¨ãŒã§ãã‚‹
 //
-//ERedis•ªUƒLƒƒƒbƒVƒ…
-//Redis‚ÍƒI[ƒvƒ“ƒ\[ƒX‚ÅŠJ”­‚³‚ê‚Ä‚¢‚éKey-ValueŒ^‚ÌƒCƒ“ƒƒ‚ƒŠƒXƒgƒA
-//NoSQL‚Ìˆêí
-//“Á‚É•ªU‚·‚é‚í‚¯‚Å‚Í‚È‚©‚Á‚½‚çƒCƒ“ƒƒ‚ƒŠ•ªUƒLƒƒƒbƒVƒ…‚ğg—p‚·‚é
+//ãƒ»Redisåˆ†æ•£ã‚­ãƒ£ãƒƒã‚·ãƒ¥
+//Redisã¯ã‚ªãƒ¼ãƒ—ãƒ³ã‚½ãƒ¼ã‚¹ã§é–‹ç™ºã•ã‚Œã¦ã„ã‚‹Key-Valueå‹ã®ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªã‚¹ãƒˆã‚¢
+//NoSQLã®ä¸€ç¨®
+//ç‰¹ã«åˆ†æ•£ã™ã‚‹ã‚ã‘ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªåˆ†æ•£ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ä½¿ç”¨ã™ã‚‹
 builder.Services.AddDistributedMemoryCache();
 
-//”FØİ’è
-//cookie”FØƒXƒL[ƒ€(—Œ`)‚ğ’Ç‰Á
+//èªè¨¼è¨­å®š
+//cookieèªè¨¼ã‚¹ã‚­ãƒ¼ãƒ (é››å½¢)ã‚’è¿½åŠ 
 // builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => {
 
-//     //Cookie—LŒøŠÔİ’è
+//     //Cookieæœ‰åŠ¹æ™‚é–“è¨­å®š
 //     options.ExpireTimeSpan = TimeSpan.FromMinutes(400);
 
-//     //”FØƒ`ƒƒƒŒƒ“ƒW‚ÍA”FØ‚³‚ê‚Ä‚¢‚È‚¢ƒ†[ƒU[‚ª”FØ‚ğ•K—v‚Æ‚·‚éƒGƒ“ƒhƒ|ƒCƒ“ƒg‚ğ—v‹‚µ‚½‚Æ‚«‚ÌƒŠƒ_ƒCƒŒƒNƒgæ
+//     //èªè¨¼ãƒãƒ£ãƒ¬ãƒ³ã‚¸ã¯ã€èªè¨¼ã•ã‚Œã¦ã„ãªã„ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒèªè¨¼ã‚’å¿…è¦ã¨ã™ã‚‹ã‚¨ãƒ³ãƒ‰ãƒã‚¤ãƒ³ãƒˆã‚’è¦æ±‚ã—ãŸã¨ãã®ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå…ˆ
 //     options.LoginPath = "/AuthError";
 
-//     //ƒ^ƒCƒ€ƒAƒEƒgŠÔŠu‚Ì”¼•ªˆÈã‚ªŒo‰ß‚µ‚½ê‡A—LŒø‚È”FØ Cookie ‚Ì—LŒøŠúŒÀ‚ğƒŠƒZƒbƒg‚µÄ”­s@
+//     //ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆé–“éš”ã®åŠåˆ†ä»¥ä¸ŠãŒçµŒéã—ãŸå ´åˆã€æœ‰åŠ¹ãªèªè¨¼ Cookie ã®æœ‰åŠ¹æœŸé™ã‚’ãƒªã‚»ãƒƒãƒˆã—å†ç™ºè¡Œã€€
 //     options.SlidingExpiration = true;
 // });
 
-//³”Fİ’è
-//‚ ‚éˆê’è‚Ìƒ†[ƒU[‚¾‚¯‚ªg—p‚Å‚«‚éAPI‚È‚Ç‚ğì¬‚·‚é‚Í‚±‚±‚Å§Œä(ƒ[ƒ‹‚Ì§Œä)
+//æ‰¿èªè¨­å®š
+//ã‚ã‚‹ä¸€å®šã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã ã‘ãŒä½¿ç”¨ã§ãã‚‹APIãªã©ã‚’ä½œæˆã™ã‚‹æ™‚ã¯ã“ã“ã§åˆ¶å¾¡(ãƒ­ãƒ¼ãƒ«ã®åˆ¶å¾¡)
 // builder.Services.AddAuthorization(options => {
-//     //ƒtƒH[ƒ‹ƒoƒbƒN ƒ|ƒŠƒV[‚ÍAƒRƒ“ƒgƒ[ƒ‰[‚Å‘¼‚Ìƒ|ƒŠƒV[‚Ü‚½‚Í‘®«‚ªw’è‚³‚ê‚Ä‚¢‚È‚¢ê‡
-//     //³”Fƒ~ƒhƒ‹ƒEƒFƒA‚ªİ’è‚µ‚½ƒtƒH[ƒ‹ƒoƒbƒNƒ|ƒŠƒV[‚ğg—p‚·‚é
-//     //Œ»İİ’è‚³‚ê‚Ä‚¢‚é‚Ì‚ª”FØƒ†[ƒU[ˆÈŠO‚Í‚Í‚¶‚©‚ê‚é
+//     //ãƒ•ã‚©ãƒ¼ãƒ«ãƒãƒƒã‚¯ ãƒãƒªã‚·ãƒ¼ã¯ã€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã§ä»–ã®ãƒãƒªã‚·ãƒ¼ã¾ãŸã¯å±æ€§ãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„å ´åˆ
+//     //æ‰¿èªãƒŸãƒ‰ãƒ«ã‚¦ã‚§ã‚¢ãŒè¨­å®šã—ãŸãƒ•ã‚©ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒãƒªã‚·ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹
+//     //ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ã®ãŒèªè¨¼ãƒ¦ãƒ¼ã‚¶ãƒ¼ä»¥å¤–ã¯ã¯ã˜ã‹ã‚Œã‚‹
 //     options.FallbackPolicy = requireAuthenticatedUser;
 // });
 
-//CORSİ’è
+//CORSè¨­å®š
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy =>
         {
-            policy.WithOrigins() //‹–‰Â‚·‚éƒIƒŠƒWƒ““ü‚ê‚é
-            .WithMethods("PUT", "DELETE", "GET", "POST")//‹–‰Â‚·‚éƒƒ\ƒbƒh
-            .AllowCredentials() //‘Šiî•ñ‚ğ‹–‰Â‚·‚éƒ|ƒŠƒV[‚ğİ’è
-            .AllowAnyHeader(); //‘—‚ç‚ê‚Ä‚«‚½ƒwƒbƒ_‚ğ‹–‰Â‚·‚éƒ|ƒŠƒV[‚ğİ’è
+            policy.WithOrigins() //è¨±å¯ã™ã‚‹ã‚ªãƒªã‚¸ãƒ³å…¥ã‚Œã‚‹
+            .WithMethods("PUT", "DELETE", "GET", "POST")//è¨±å¯ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
+            .AllowCredentials() //è³‡æ ¼æƒ…å ±ã‚’è¨±å¯ã™ã‚‹ãƒãƒªã‚·ãƒ¼ã‚’è¨­å®š
+            .AllowAnyHeader(); //é€ã‚‰ã‚Œã¦ããŸãƒ˜ãƒƒãƒ€ã‚’è¨±å¯ã™ã‚‹ãƒãƒªã‚·ãƒ¼ã‚’è¨­å®š
 
         }
     );
 });
 
-//ƒZƒbƒVƒ‡ƒ“‚Ì’Ç‰Á
+//ã‚»ãƒƒã‚·ãƒ§ãƒ³ã®è¿½åŠ 
 builder.Services.AddSession();
 
-// ŠÂ‹«•Ï”æ“¾ˆ—ŒÄ‚Ño‚µ
-//applicationSetting.jsonƒtƒ@ƒCƒ‹‚©‚çŒÄ‚Ño‚µ
-IConfiguration config = new ConfigurationBuilder()
-    .AddJsonFile(app.Environment.IsDevelopment() ? "appsettings.Development.json" : "appsettings.json")
-    .AddEnvironmentVariables()
-    .Build();
-EnvConsts.getEnvConsts(config);
+// ç’°å¢ƒå¤‰æ•°å–å¾—å‡¦ç†å‘¼ã³å‡ºã—
+// releseæ™‚ã«ã¯ã€applicationSetting.jsonãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—
+// debugæ™‚ã«ã¯ã€applicationSetting.Development.jsonãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—
+#if DEBUG
+builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.Development.json")
+    .AddEnvironmentVariables();
+#else
+builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .AddEnvironmentVariables();
+#endif
 
-//ƒrƒ‹ƒh‚µAPPì¬
+//ãƒ“ãƒ«ãƒ‰ã—APPä½œæˆ
 var app = builder.Build();
 
-//cors—LŒø‰»
+//corsæœ‰åŠ¹åŒ–
 app.UseCors(MyAllowSpecificOrigins);
 
-// ƒfƒoƒbƒOŠÂ‹«(develop)‚¾‚¯swagger‚ª‹N“®‚·‚é‚æ‚¤‚É
-if (app.Environment.IsDevelopment())
+// ãƒ‡ãƒãƒƒã‚°ç’°å¢ƒ(develop)æ™‚ã ã‘swaggerãŒèµ·å‹•ã™ã‚‹ã‚ˆã†ã«
+#if DEBUG
+//swaggerè¿½åŠ 
+app.UseSwagger();
+
+//swaggerUIè¿½åŠ   vscodeã®å ´åˆ
+app.UseSwaggerUI(options =>
 {
-    //swagger’Ç‰Á
-    app.UseSwagger();
+    //ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ«ãƒ¼ãƒˆã§swaggerUIã‚’èµ·å‹•ã€€
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+});
+app.UseSwaggerUI();
+#endif
 
-    //swaggerUI’Ç‰Á  vscode‚Ìê‡
-    app.UseSwaggerUI(options =>
-    {
-        //ƒfƒtƒHƒ‹ƒgƒ‹[ƒg‚ÅswaggerUI‚ğ‹N“®@
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty;
-    });
-    app.UseSwaggerUI();
-}
-
-//HTTP —v‹‚ğHTTPS‚É‚¢ƒ_ƒCƒŒƒNƒg‚·‚é
-//HTTP‚Ìƒ|[ƒg‚Ì’è‹`‚ª‚ ‚é‚Ì‚İ
+//HTTP è¦æ±‚ã‚’HTTPSã«ã„ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã™ã‚‹
+//HTTPã®ãƒãƒ¼ãƒˆã®å®šç¾©ãŒã‚ã‚‹æ™‚ã®ã¿
 app.UseHttpsRedirection();
 
-//UseDefaultFiles‚ÆUseStaticFiles‚É‚Â‚¢‚Ä‚ÍA‰º‹LURLQÆ
+//UseDefaultFilesã¨UseStaticFilesã«ã¤ã„ã¦ã¯ã€ä¸‹è¨˜URLå‚ç…§
 //https://www.ipentec.com/document/asp-net-core-set-default-document-in-static-file-folder
-//ƒvƒƒWƒFƒNƒg“à‚ÌwwwrootƒtƒHƒ‹ƒ_‚É”z’u‚µ‚½Ã“Iƒtƒ@ƒCƒ‹‚ÌƒfƒtƒHƒ‹ƒgƒhƒLƒ…ƒƒ“ƒg‚ª“®ì‚·‚éó‘Ô‚É
-//API‚Å‚Íg—p‚µ‚È‚¢
+//ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆå†…ã®wwwrootãƒ•ã‚©ãƒ«ãƒ€ã«é…ç½®ã—ãŸé™çš„ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆãŒå‹•ä½œã™ã‚‹çŠ¶æ…‹ã«
+//APIã§ã¯ä½¿ç”¨ã—ãªã„
 //app.UseDefaultFiles();
 
-//wwwrootƒtƒHƒ‹ƒ_‚É”z’u‚µ‚½ƒtƒ@ƒCƒ‹‚ğÃ“Iƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄƒAƒNƒZƒX‰Â”\‚Èó‘Ô‚É@html,css,img...
-//Ã“Iƒtƒ@ƒCƒ‹‚ğ’ñ‹Ÿ‚Å‚«‚é‚æ‚¤‚É‚È‚é
-//API‚Å‚Íg—p‚µ‚È‚¢
+//wwwrootãƒ•ã‚©ãƒ«ãƒ€ã«é…ç½®ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’é™çš„ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½ãªçŠ¶æ…‹ã«ã€€html,css,img...
+//é™çš„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æä¾›ã§ãã‚‹ã‚ˆã†ã«ãªã‚‹
+//APIã§ã¯ä½¿ç”¨ã—ãªã„
 //app.UseStaticFiles();
 
-//ƒ‹[ƒeƒBƒ“ƒO‚Ì—LŒø‰»
+//ãƒ«ãƒ¼ãƒ†ã‚£ãƒ³ã‚°ã®æœ‰åŠ¹åŒ–
 app.UseRouting();
 
-//ƒGƒ‰[ ƒnƒ“ƒhƒ‰ ƒpƒX‚ğİ’è
-//ƒGƒ‰[u/Errorv‚Ìpath‚ÉƒŠƒ_ƒCƒŒƒNƒg‚µAƒGƒ‰[ƒAƒNƒVƒ‡ƒ“ƒƒ\ƒbƒh‚ğÀs
+//ã‚¨ãƒ©ãƒ¼ ãƒãƒ³ãƒ‰ãƒ© ãƒ‘ã‚¹ã‚’è¨­å®š
+//ã‚¨ãƒ©ãƒ¼æ™‚ã€Œ/Errorã€ã®pathã«ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã—ã€ã‚¨ãƒ©ãƒ¼ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œ
 app.UseExceptionHandler("/Error");
 
-//”FØ‚Ì—LŒø‰»
+//èªè¨¼ã®æœ‰åŠ¹åŒ–
 app.UseAuthentication();
 
-//³”F‚Ì—LŒø‰»
+//æ‰¿èªã®æœ‰åŠ¹åŒ–
 app.UseAuthorization();
 
-//Cookie ƒ|ƒŠƒV[‹@”\‚ª—LŒø
-//ƒfƒtƒHƒ‹ƒg‚ÌMinimumSameSitePolicy’l‚ÍSameSiteMode.Lax
+//Cookie ãƒãƒªã‚·ãƒ¼æ©Ÿèƒ½ãŒæœ‰åŠ¹
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®MinimumSameSitePolicyå€¤ã¯SameSiteMode.Lax
 //https://laboradian.com/same-site-cookies/
 app.UseCookiePolicy();
 
-//ƒZƒbƒVƒ‡ƒ“‚Ì—LŒø‰»
+//ã‚»ãƒƒã‚·ãƒ§ãƒ³ã®æœ‰åŠ¹åŒ–
 app.UseSession();
 
-//‘®«ƒ‹[ƒeƒBƒ“ƒOƒRƒ“ƒgƒ[ƒ‰‚ğƒ}ƒbƒv‚·‚é
-//¡‰ñ‚Írouting‚ÅƒGƒ“ƒhƒ|ƒCƒ“ƒg‚Éƒ}ƒbƒsƒ“ƒO‚³‚¹‚½‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg‚µ‚½
+//å±æ€§ãƒ«ãƒ¼ãƒ†ã‚£ãƒ³ã‚°ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’ãƒãƒƒãƒ—ã™ã‚‹
+//ä»Šå›ã¯routingã§ã‚¨ãƒ³ãƒ‰ãƒã‚¤ãƒ³ãƒˆã«ãƒãƒƒãƒ”ãƒ³ã‚°ã•ã›ãŸã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ãŸ
 // app.MapControllers();
 
-//‹K‘¥ƒ‹[ƒeƒBƒ“ƒO(ASP.NET Core MVC ‚â Razer Pages)‚ÌÛ‚Ég—p‚·‚é
-//¡‰ñ‚Í‘®«ƒ‹[ƒeƒBƒ“ƒO(WebAPI)‚Ì‚½‚ß‚¢‚ç‚È‚¢
-//‹K‘¥‚ğ’è‹`‚µ‚Ä‚»‚ê‚ğƒGƒ“ƒhƒ|ƒCƒ“ƒg‚É’Ç‰Á‚·‚é
-//MapDefaultControllerRoute()‚Í‹K–ñ‚Ì’è‹`‚ğ’Ç‰Á‚·‚éƒƒ\ƒbƒh
+//è¦å‰‡ãƒ«ãƒ¼ãƒ†ã‚£ãƒ³ã‚°(ASP.NET Core MVC ã‚„ Razer Pages)ã®éš›ã«ä½¿ç”¨ã™ã‚‹
+//ä»Šå›ã¯å±æ€§ãƒ«ãƒ¼ãƒ†ã‚£ãƒ³ã‚°(WebAPI)ã®ãŸã‚ã„ã‚‰ãªã„
+//è¦å‰‡ã‚’å®šç¾©ã—ã¦ãã‚Œã‚’ã‚¨ãƒ³ãƒ‰ãƒã‚¤ãƒ³ãƒˆã«è¿½åŠ ã™ã‚‹
+//MapDefaultControllerRoute()ã¯è¦ç´„ã®å®šç¾©ã‚’è¿½åŠ ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
 //app.MapDefaultControllerRoute();
 
-// ƒRƒ“ƒgƒ[ƒ‰[‚Å’è‹`‚µ‚½ƒAƒNƒVƒ‡ƒ“–¼‚ğƒGƒ“ƒhƒ|ƒCƒ“ƒg‚Æ‚µ‚Äİ’è‚·‚é
+// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã§å®šç¾©ã—ãŸã‚¢ã‚¯ã‚·ãƒ§ãƒ³åã‚’ã‚¨ãƒ³ãƒ‰ãƒã‚¤ãƒ³ãƒˆã¨ã—ã¦è¨­å®šã™ã‚‹
 // https://blog.beachside.dev/entry/2020/12/23/144444
-app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+app.MapControllers();
 
-//Às
+//å®Ÿè¡Œ
 app.Run();

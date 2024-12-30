@@ -2,25 +2,40 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build",
+      "label": "build Debug",
       "command": "dotnet",
       "type": "process",
-      "args": ["build", "${workspaceFolder}/$PROJECT_NAME/$PROJECT_NAME.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "args": ["build","-c", "Debug", "${workspaceFolder}/sample/sample.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
       "problemMatcher": "$msCompile",
       "group": "build"
     },
     {
-      "label": "publish",
+      "label": "build Release",
       "command": "dotnet",
       "type": "process",
-      "args": ["publish", "${workspaceFolder}/$PROJECT_NAME/$PROJECT_NAME.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "args": ["build","-c", "Release", "${workspaceFolder}/sample/sample.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "publish Debug",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["publish","-c", "Debug", "${workspaceFolder}/$sample/sample.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish Release",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["publish","-c", "Release", "${workspaceFolder}/$sample/sample.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
       "problemMatcher": "$msCompile"
     },
     {
       "label": "watch",
       "command": "dotnet",
       "type": "process",
-      "args": ["watch", "run", "--project", "${workspaceFolder}/$PROJECT_NAME/$PROJECT_NAME.csproj"],
+      "args": ["watch", "run", "--project", "${workspaceFolder}/sample/sample.csproj"],
       "problemMatcher": "$msCompile"
     }
   ]

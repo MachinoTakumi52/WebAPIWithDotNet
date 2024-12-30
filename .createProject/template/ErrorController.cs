@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using webApiProJect;
 
 /// <summary>
 /// 例外処理コントローラー
 /// </summary>
-[Route($"api/{buildsettings.version}/[controller]")]
+[Route($"api/[controller]")]
 [ApiController]
 [ApiExplorerSettings(IgnoreApi = true)]
 public class ErrorController : ControllerBase

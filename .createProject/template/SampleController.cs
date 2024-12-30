@@ -1,14 +1,26 @@
+using Consts;
 using Microsoft.AspNetCore.Mvc;
-using webApiProJect;
-
 
 /// <summary>
 /// サンプルコントローラー
 /// </summary>
 [ApiController] //APIコントローラーを示す属性
-[Route($"api/{buildsettings.version}/[controller]/[action]")] //ルーティングの設定
+[Route($"apis/[controller]/[action]")] //ルーティングの設定
 public class SampleController : ControllerBase //コントローラークラスはControllerBaseを継承する必要あり
 {
+    // 環境変数を使用したい場合は、IConfigurationをDIするので、フィールドを設定する
+    private readonly IConfiguration _configuration;
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="configuration"></param>
+    public SampleController(IConfiguration configuration)
+    {
+        // DIされたIConfigurationをフィールドに設定
+        _configuration = configuration;
+    }
+
     /// <summary>
     /// 受け取った文字にHelloを付けて返却
     /// </summary>
@@ -19,7 +31,10 @@ public class SampleController : ControllerBase //コントローラークラス�
     // [FromQuery]を使用することで、クエリパラメータを受け取ることができる
     public JsonResult Get([FromQuery] string text)
     {
-        return new JsonResult("Hello " + text);
+        // 環境変数を取得
+        // EnvConstsファイルでは、環境変数を取得するためのキーを定数として保持している
+        string connectionString = _configuration[EnvConsts.ConnectionString]!;
+        return new JsonResult("Hello " + text + connectionString);
     }
 
     /// <summary>

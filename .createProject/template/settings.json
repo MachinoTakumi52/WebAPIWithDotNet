@@ -7,5 +7,5 @@
     "editor.defaultFormatter": "ms-dotnettools.csharp"
   },
   "omnisharp.useModernNet": true,
-  "dotnet.defaultSolution": "$PROJECT_NAME.sln"
+  "dotnet.defaultSolution": "PROJECT_NAME.sln"
 }

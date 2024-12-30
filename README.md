@@ -1,4 +1,4 @@
-# .NET 　 Core 　 WEB 　 API 　テンプレート
+# .NETCore WEBAPI テンプレート
 
 ## プロジェクト作成
 
@@ -27,20 +27,20 @@ ctrl + shift + P
 
 ### テンプレート
 
-TODO サンプルファイル配置
-
 - launch.json(vsCode デバッグ設定)
 - settings.json(vsCode 設定)
 - tasks.json(vsCode デバッグ設定)
-- appsetting.json(システム環境変数)
+- appsettings.json(システム環境変数)
+- appsettings.Development.json(システム環境変数)
+- EnvConsts.cs(環境変数取得用のキーを定義する定数クラス)
 - Program.cs(エントリーファイル)
+- ErrorController.cs(共通エラーハンドリングコントローラー)
 - SampleContrller.cs(サンプルコントローラー)
 - SampleModels.cs(サンプルモデル)
 
 ## ファイル構成
 
 TODO API アーキテクチャの選定の反映
-TODO アプリバージョンをどう管理するか
 
 ```bash
 solutionName
@@ -69,11 +69,13 @@ vsCode の場合は、コンソールから追加
 公式サイトにコマンドが書いてあるのでそれをコンソールに打ち込む  
 https://www.nuget.org/
 
-### 環境設定ファイル
+### 環境変数設定ファイル
 
-TODO もうちょいうまいことしたい
-`appsetting.json`ファイルに環境設定を参照している  
-追加する際は、上記のファイルに環境変数を入力後`EnvConsts`ファイルにプロパティを追加
+Release 時は、`appsetting.json`ファイルを参照
+Debug 時は、`appsetting.Development.json`ファイルを参照
+環境変数を追加する際は、上記のファイルに環境変数を定義後`EnvConsts`ファイルに取得するためのキーを定数として定義
+システム内で使用する際は、IConfiguration を DI する
+詳しくは、`sampleController.cs`にやり方を記載
 
 ### エントリーポイント
 
@@ -96,5 +98,19 @@ TODO もうちょいうまいことしたい
 
 ## ビルド/デプロイ
 
-TODO ビルド
-TODO デプロイ
+下記のショートカットからコマンドパレットを開き「tasks: Run task」を入力し「タスクの実行」を選択
+
+```
+ctrl + shift + P
+```
+
+選択肢の中から、用途に合ったタスクを選択すると実行される
+
+- ビルド
+  Debug：`build Debug`
+  Release：`build Release`
+- デプロイ
+  Debug：`publish Debug`
+  Release：`publish Release`
+
+TODO:デプロイ
