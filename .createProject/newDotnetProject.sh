@@ -93,6 +93,8 @@ sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" Program.cs
 cp "$TEMPLATE_DIR"/SampleController.cs ./Controllers/
 # ErrorController(共通ハンドラ)
 cp "$TEMPLATE_DIR"/ErrorController.cs ./Controllers/
+# BaseApiController
+cp "$TEMPLATE_DIR"/ErrorController.cs ./Controllers/
 # サンプルModel
 cp "$TEMPLATE_DIR"/SampleModel.cs ./Models/
 # EnvConsts(環境変数取得用定数)

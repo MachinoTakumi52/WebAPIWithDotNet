@@ -4,11 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 /// <summary>
 /// サンプルコントローラー
 /// </summary>
-[ApiController] //APIコントローラーを示す属性
-[Route($"apis/[controller]/[action]")] //ルーティングの設定
-public class SampleController : ControllerBase //コントローラークラスはControllerBaseを継承する必要あり
+public class SampleController : BaseController //コントローラーはBaseControllerを継承して作成する
 {
-    // 環境変数を使用したい場合は、IConfigurationをDIするので、フィールドを設定する
+    // 環境変数を使用したい場合は、IConfigurationをDIする
     private readonly IConfiguration _configuration;
 
     /// <summary>
@@ -22,58 +20,49 @@ public class SampleController : ControllerBase //コントローラークラス�
     }
 
     /// <summary>
-    /// 受け取った文字にHelloを付けて返却
+    /// GETメソッド例
     /// </summary>
     /// <param name="text"></param>
     /// <returns></returns>
     [HttpGet] //HTTPのGETメソッドを示す属性
-    //「api/buildsettings.version/Sample/Get」 にアクセスされたときに呼び出される
+    //「api/Sample/Get」 にアクセスされたときに呼び出される
     // [FromQuery]を使用することで、クエリパラメータを受け取ることができる
-    public JsonResult Get([FromQuery] string text)
+    // 戻り値をJsonResultにすることで、JSON形式で返却することができる
+    public ActionResult<SampleModel> Get([FromQuery] string text)
     {
         // 環境変数を取得
         // EnvConstsファイルでは、環境変数を取得するためのキーを定数として保持している
         string connectionString = _configuration[EnvConsts.ConnectionString]!;
-        return new JsonResult("Hello " + text + connectionString);
+        return new SampleModel($"Hello {text} {connectionString}");
     }
 
     /// <summary>
-    /// 受け取った文字にHelloを付けて返却
+    /// POSTメソッド例
     /// </summary>
-    /// <param name="text"></param>
+    /// <param name="sample"></param>
     /// <returns></returns>
     [HttpPost]//HTTPのPOSTメソッドを示す属性
-    //「api/buildsettings.version/Sample/Post」 にアクセスされたときに呼び出される
+    //「api/Sample/Post」 にアクセスされたときに呼び出される
     // [FromBody]を使用することで、リクエストボディを受け取ることができる
-    public JsonResult Post([FromBody] SampleModel sample)
+    // 引数の型にモデルクラスを指定することで、リクエストボディのJSONをモデルクラスに変換して受け取ることができる
+    public ActionResult<SampleModel> Post([FromBody] SampleModel sample)
     {
-        return new JsonResult("Hello " + sample.Name);
+        return new SampleModel($"Hello {sample.Name}");
     }
 
     /// <summary>
-    /// 受け取った文字にHelloを付けて返却
+    /// 例外処理例
     /// </summary>
-    /// <param name="text"></param>
+    /// <param name="sample"></param>
     /// <returns></returns>
-    [HttpPut] //HTTPのPUTメソッドを示す属性
-    //「api/buildsettings.version/Sample/Put」 にアクセスされたときに呼び出される
-    // [FromBody]を使用することで、クエリパラメータを受け取ることができる
-    public JsonResult Put([FromBody] string text)
+    [HttpPost]//HTTPのPOSTメソッドを示す属性
+    //「api/Sample/Exception」 にアクセスされたときに呼び出される
+    // 共通でエラーをハンドリングするため例外処理は、エラーをthrowするだけで良い
+    public ActionResult<SampleModel> Exception([FromBody] SampleModel sample)
     {
-        return new JsonResult("Hello " + text);
-    }
 
-    /// <summary>
-    /// 受け取ったIDに対応するデータを削除
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    [HttpDelete] //HTTPのDELETEメソッドを示す属性
-    //「api/buildsettings.version/Sample/Delete」 にアクセスされたときに呼び出される
-    // [FromBody]を使用することで、クエリパラメータを受け取ることができる
-    public JsonResult Delete([FromBody] int id)
-    {
-        return new JsonResult("Deleted data with ID: " + id);
-    }
+        // 例外を発生させる
+        throw new Exception("例外が発生しました");
 
+    }
 }

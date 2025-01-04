@@ -1,4 +1,4 @@
-# .NETCore WEBAPI テンプレート
+# .NETCore WEBAPI
 
 ## プロジェクト作成
 
@@ -11,13 +11,15 @@ devcontainer → docker → Dockerfile 内「dotnet sdk 設定」に使用した
   FROM mcr.microsoft.com/dotnet/sdk:8.0
 ```
 
-### 下記のコマンド bash で実行
+### シェル実行
+
+ターミナルを開き、bash から下記コマンドを実行
 
 ```sh
 /workspace/.createProject/newDotnetProject.sh
 ```
 
-### vsCode 設定の反映のためウィンドの再読み込みを行う
+### ウィンドの再読み込み
 
 下記のショートカットからコマンドパレットを開き「reload Window」を入力し「開発者：ウィンドウの再読み込み」を選択
 
@@ -25,22 +27,14 @@ devcontainer → docker → Dockerfile 内「dotnet sdk 設定」に使用した
 ctrl + shift + P
 ```
 
-### テンプレート
+## 開発について
 
-- launch.json(vsCode デバッグ設定)
-- settings.json(vsCode 設定)
-- tasks.json(vsCode デバッグ設定)
-- appsettings.json(システム環境変数)
-- appsettings.Development.json(システム環境変数)
-- EnvConsts.cs(環境変数取得用のキーを定義する定数クラス)
-- Program.cs(エントリーファイル)
-- ErrorController.cs(共通エラーハンドリングコントローラー)
-- SampleContrller.cs(サンプルコントローラー)
-- SampleModels.cs(サンプルモデル)
+### フォルダ構成
 
-## ファイル構成
-
-TODO API アーキテクチャの選定の反映
+TODO:モデルフォルダどうするか  
+TODO:request response モデルをファイルとして作成するか  
+TODO:DB やりとり用のモデル(Entity)についてどうするか  
+TODO:テーブル結合時の呼び出しは、モデル作成するの？
 
 ```bash
 solutionName
@@ -60,7 +54,34 @@ solutionName
 |__Properties デバッグ設定ファイル格納フォルダ
 ```
 
-## 開発について
+### テンプレートファイル
+
+- launch.json  
+  vsCode デバッグ設定
+- settings.json  
+  vsCode 設定
+- tasks.json  
+  vsCode デバッグ設定
+- appsettings.json  
+  本番用システム環境変数
+- appsettings.Development.json  
+  開発用システム環境変数
+- EnvConsts.cs  
+  環境変数取得用のキーを定義する定数クラス
+- Program.cs  
+  エントリーファイル
+- ErrorController.cs  
+  共通エラーハンドリングコントローラー
+- SampleContrller.cs  
+  サンプルコントローラー
+- BaseController.cs
+  ベースコントローラー
+  このコントローラーを継承して作成していく
+- SampleModels.cs  
+  サンプルモデル
+  リクエストやレスポンスのモデルを格納
+- TODO:テンプレート作成 repository
+- TODO:テンプレート作成 service
 
 ### ライブラリの追加
 
@@ -71,30 +92,37 @@ https://www.nuget.org/
 
 ### 環境変数設定ファイル
 
-Release 時は、`appsetting.json`ファイルを参照
-Debug 時は、`appsetting.Development.json`ファイルを参照
+Release 時は、`appsetting.json`ファイルが参照される  
+Debug 時は、`appsetting.Development.json`ファイルが参照される  
 環境変数を追加する際は、上記のファイルに環境変数を定義後`EnvConsts`ファイルに取得するためのキーを定数として定義
-システム内で使用する際は、IConfiguration を DI する
+システム内で使用する際は、IConfiguration を DI する  
 詳しくは、`sampleController.cs`にやり方を記載
 
 ### エントリーポイント
 
 `Program.cs`ファイルがエントリーポイントになる  
-上記のファイル内に認証や CORS 設定などをやっていく
+上記のファイル内に認証や CORS 設定などをやっていく  
 詳しい内容は、ファイル内にコメントで記載してあるので  
 必要に応じてコメントアウトして使用してほしい
 
-### コントローラー/モデル
-
-詳しい開発方法は、  
-`sampleController.cs`  
-`sampleModel.cs`  
-のコメントを参考に作成していってほしい
-
 ### 実行/デバッグ
 
-デバッグポイント有効
-ホットリロード有効(Program.cs 修正時は、再デバッグが必要)
+- `実行とデバッグ`タブから用途に合わせて実行
+
+1. デバッグ(develop)
+   `.NET Core デバッグ(Development)`を実行
+2. デバッグ(release)
+   `.NET Core デバッグ(Product)`を実行
+
+- ホットリロード有効
+
+- デバッグ(ホットリロード有効)
+  下記のショートカットからコマンドパレットを開き「tasks: Run task」を入力し「タスクの実行」を選択
+  表示される選択肢の中から「watch」を選択する
+
+```
+ctrl + shift + P
+```
 
 ## ビルド/デプロイ
 
@@ -114,3 +142,7 @@ ctrl + shift + P
   Release：`publish Release`
 
 TODO:デプロイ
+
+```
+
+```
