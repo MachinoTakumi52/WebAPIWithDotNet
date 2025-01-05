@@ -81,6 +81,11 @@ mkdir -p "Models"
 cd "Models"
 mkdir -p "Entities"
 mkdir -p "Dtos"
+cd "Dtos"
+mkdir -p "Requests"
+mkdir -p "Responses"
+mkdir -p "Joined"
+cd ..
 cd ..
 
 # サンプルファイル作成
@@ -104,6 +109,7 @@ cp "$TEMPLATE_DIR"/EnvConsts.cs ./Consts/
 # TODO サービス
 # TODO リポジトリ
 # TODO フォルダ構成で必要になったものを追加
+# TODO:DBConection
 
 cd ..
 

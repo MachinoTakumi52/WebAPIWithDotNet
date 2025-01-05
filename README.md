@@ -31,11 +31,6 @@ ctrl + shift + P
 
 ### フォルダ構成
 
-TODO:モデルフォルダどうするか  
-TODO:request response モデルをファイルとして作成するか  
-TODO:DB やりとり用のモデル(Entity)についてどうするか  
-TODO:テーブル結合時の呼び出しは、モデル作成するの？
-
 ```bash
 solutionName
 |
@@ -49,7 +44,15 @@ solutionName
 |
 |__Models モデル
 |  |
-|  |__DTO データ転送オブジェクト
+|  |__DTOs データ転送オブジェクト
+|  |　|
+|  |　|__Requests リクエストモデル
+|  |　|
+|  |　|__Responses レスポンスモデル　
+|  |　|
+|  |　|__Joined DBテーブル結合モデル
+|  |
+|  |__Entities Entity
 |
 |__Properties デバッグ設定ファイル格納フォルダ
 ```
@@ -82,6 +85,10 @@ solutionName
   リクエストやレスポンスのモデルを格納
 - TODO:テンプレート作成 repository
 - TODO:テンプレート作成 service
+- TODO:テンプレート作成 request
+- TODO:テンプレート作成 response
+- TODO:テンプレート作成 joined
+- TODO:DBConection
 
 ### ライブラリの追加
 
@@ -142,7 +149,3 @@ ctrl + shift + P
   Release：`publish Release`
 
 TODO:デプロイ
-
-```
-
-```
