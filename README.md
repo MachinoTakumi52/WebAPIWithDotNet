@@ -1,4 +1,4 @@
-# .NETCore WEBAPI
+# handrail-unit-management-back-end(手摺バラシシステム-バックエンド環境資料)
 
 ## プロジェクト作成
 
@@ -48,13 +48,15 @@ solutionName
 |  |　|
 |  |　|__Requests リクエストモデル
 |  |　|
-|  |　|__Responses レスポンスモデル　
+|  |　|__Responses レスポンスモデル
 |  |　|
 |  |　|__Joined DBテーブル結合モデル
 |  |
 |  |__Entities Entity
 |
 |__Properties デバッグ設定ファイル格納フォルダ
+|
+|__Utils 共通で使用する関数ファイルなどを格納するフォルダ
 ```
 
 ### テンプレートファイル
@@ -89,6 +91,10 @@ solutionName
 - TODO:テンプレート作成 response
 - TODO:テンプレート作成 joined
 - TODO:DBConection
+  DB と接続するためのクラス
+  プロジェクト作成シェル実行時、使用する DB を選択したら自動で作成される
+  TODO: oracle connecttion ファイル
+  TODO: mySQL BulkInsert 関数の作成(CSV ファイルから取り込むものしかない)
 
 ### ライブラリの追加
 
@@ -96,6 +102,12 @@ Nuget からライブラリを追加
 vsCode の場合は、コンソールから追加  
 公式サイトにコマンドが書いてあるのでそれをコンソールに打ち込む  
 https://www.nuget.org/
+
+### ファイル追加(C# Extention 拡張機能使用)
+
+Explorer タブからファイルを作成したいフォルダを選択して右クリックし`New C#`を選択
+Class や Interface などテンプレートが作成できるので、該当するものを選択
+上部ヘッダーにファイル名を入力すると新しいファイルが作成される
 
 ### 環境変数設定ファイル
 
