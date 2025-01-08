@@ -15,7 +15,7 @@
         // jsonはvscodeのフォーマッターを利用
         "[json]": {
           "editor.defaultFormatter": "vscode.json-language-features"
-        }
+        },
       },
       "extensions": [
         // vscode日本語化
@@ -26,6 +26,8 @@
         "ms-dotnettools.csharp",
         // C# Dev Kit拡張機能
         "ms-dotnettools.csdevkit",
+        // C# Extention
+        "kreativ-software.csharpextensions",
         // git
         "mhutchie.git-graph",
         "donjayamanne.githistory",
