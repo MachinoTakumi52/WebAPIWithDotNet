@@ -1,22 +1,25 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-/// <summary>
-/// 例外処理コントローラー
-/// </summary>
-[ApiController]
-[ApiExplorerSettings(IgnoreApi = true)]
-public class ErrorController : ControllerBase
+namespace PROJECT_NAME.Controllers
 {
     /// <summary>
-    /// 例外処理API　例外が起きたときはここに来る
+    /// 例外処理コントローラー
     /// </summary>
-    /// <returns></returns>
-    [Route("/Error")]
-    public ActionResult Error()
+    [ApiController]
+    [ApiExplorerSettings(IgnoreApi = true)]
+    public class ErrorController : ControllerBase
     {
-        //コンテキスト取得
-        var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
-        return StatusCode(500, new { message = context!.Error.Message });
+        /// <summary>
+        /// 例外処理API　例外が起きたときはここに来る
+        /// </summary>
+        /// <returns></returns>
+        [Route("/Error")]
+        public ActionResult Error()
+        {
+            //コンテキスト取得
+            var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
+            return StatusCode(500, new { message = context!.Error.Message });
+        }
     }
 }

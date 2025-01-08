@@ -1,4 +1,4 @@
-﻿namespace Consts
+﻿namespace PROJECT_NAME.Consts
 {
     /// <summary>
     /// 環境変数取得用のキーを定義する定数クラス
