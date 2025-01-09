@@ -38,7 +38,7 @@ ctrl + shift + P
 ```bash
 solutionName
 |
-|__Constants 定数フォルダ
+|__Constants 定数フォルダ TODO:enum定数定義
 |
 |__Controllers コントローラー
 |
