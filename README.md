@@ -1,4 +1,4 @@
-# WEB API開発環境
+# handrail-unit-management-back-end(手摺バラシシステム-バックエンド環境資料)
 
 ## プロジェクト作成
 
@@ -16,7 +16,7 @@ devcontainer → docker → Dockerfile 内「dotnet sdk 設定」に使用した
 ターミナルを開き、bash から下記コマンドを実行
 
 ```sh
-/workspace/.createProject/newDotnetProject.sh
+/workspace/.createProject/newDotnetSolution.sh
 ```
 
 ### ウィンドの再読み込み
@@ -34,7 +34,7 @@ ctrl + shift + P
 ```bash
 solutionName
 |
-|__Consts 定数フォルダ
+|__Constants 定数フォルダ
 |
 |__Controllers コントローラー
 |
@@ -46,18 +46,65 @@ solutionName
 |  |
 |  |__DTOs データ転送オブジェクト
 |  |　|
+|  |　|__Shared サービス、コントローラー間のデータのやり取りモデル
+|  |　|
 |  |　|__Requests リクエストモデル
 |  |　|
 |  |　|__Responses レスポンスモデル
-|  |　|
-|  |　|__Joined DBテーブル結合モデル
 |  |
-|  |__Entities Entity
+|  |__Entities データベースとのマッピングモデル
 |
 |__Properties デバッグ設定ファイル格納フォルダ
 |
 |__Utils 共通で使用する関数ファイルなどを格納するフォルダ
 ```
+
+### 三層アーキテクチャ（Three-Tier Architecture）
+
+TODO:進め方かく
+
+1. Controller
+
+- 役割  
+  HTTP リクエストを受け付け、適切な Service メソッドを呼び出し、レスポンスを返す。
+
+- 進め方  
+  作成した Controller クラスに`BaseController.cs`を継承する
+  詳しい内容は、`SampleController.cs`を参照
+
+2. Service
+   TODO:進め方かく
+   TODO:サンプルデータ作成
+
+- 役割  
+  ビジネスロジックを担当。複数の Repository のデータを統合して加工。
+- 進め方
+
+3. Repository
+   TODO:サンプルデータ作成
+
+- 役割  
+  データベースとのやり取りを担当（CRUD 操作）
+- 進め方  
+  DB テーブルの数だけファイルを作成  
+  テーブルをリレイションしたデータを取得したい場合は、リレイションする主テーブルのファイルに取得ソースを書く
+
+4. Models  
+   TODO:サービスコントローラー間 DTO について  
+   TODO:サンプルデータ作成
+
+- 役割  
+  データの構造を定義  
+  Shared：サービス層とコントローラー層間をやり取りするためのファイル  
+  Request：クライアントから送信されるデータを受け取るためのモデル  
+  Response：クライアントに返すデータを表現するモデル  
+  Entity：データベーステーブルとのマッピングを行うモデル
+
+- 進め方
+
+  Request：Controller ファイルの数だけファイルを作成  
+  Response：Controller ファイルの数だけファイルを作成  
+  Entity：DB テーブルの数だけファイルを作成
 
 ### テンプレートファイル
 
@@ -85,15 +132,22 @@ solutionName
 - SampleModels.cs  
   サンプルモデル
   リクエストやレスポンスのモデルを格納
-- TODO:テンプレート作成 repository
-- TODO:テンプレート作成 service
-- TODO:テンプレート作成 request
-- TODO:テンプレート作成 response
-- TODO:テンプレート作成 joined
-- TODO:DBConection
-  DB と接続するためのクラス
-  プロジェクト作成シェル実行時、使用する DB を選択したら自動で作成される
-  TODO: oracle connecttion ファイル
+- SampleRepository.cs
+  サンプルリポジトリ
+- SampleService.cs
+  サンプルサービス
+- SampleRequest.cs
+  サンプルリクエスト
+- SampleResponse.cs
+  サンプルレスポンス
+- DBConection.cs
+  DB と接続するためのクラス  
+  プロジェクト作成シェル実行時、使用する DB を選択したら自動で作成される  
+  MariaDB(MySQL)用：DataBaseConnectionForMySql.cs  
+  SQLServer 用：DataBaseConnectionForSqlServer.cs  
+  PostgreSQL 用：DataBaseConnectionForPostgreSQL.cs
+
+  TODO: oracle connecttion ファイル  
   TODO: mySQL BulkInsert 関数の作成(CSV ファイルから取り込むものしかない)
 
 ### ライブラリの追加
@@ -105,16 +159,16 @@ https://www.nuget.org/
 
 ### ファイル追加(C# Extention 拡張機能使用)
 
-Explorer タブからファイルを作成したいフォルダを選択して右クリックし`New C#`を選択
-Class や Interface などテンプレートが作成できるので、該当するものを選択
+Explorer タブからファイルを作成したいフォルダを選択して右クリックし`New C#`を選択  
+Class や Interface などテンプレートが作成できるので、該当するものを選択  
 上部ヘッダーにファイル名を入力すると新しいファイルが作成される
 
 ### 環境変数設定ファイル
 
 Release 時は、`appsetting.json`ファイルが参照される  
 Debug 時は、`appsetting.Development.json`ファイルが参照される  
-環境変数を追加する際は、上記のファイルに環境変数を定義後`EnvConsts`ファイルに取得するためのキーを定数として定義
-システム内で使用する際は、IConfiguration を DI する  
+環境変数を追加する際は、上記のファイルに環境変数を定義後`EnvConsts`ファイルに取得するためのキーを定数として  
+定義システム内で使用する際は、IConfiguration を DI する  
 詳しくは、`sampleController.cs`にやり方を記載
 
 ### エントリーポイント
@@ -122,7 +176,7 @@ Debug 時は、`appsetting.Development.json`ファイルが参照される
 `Program.cs`ファイルがエントリーポイントになる  
 上記のファイル内に認証や CORS 設定などをやっていく  
 詳しい内容は、ファイル内にコメントで記載してあるので  
-必要に応じてコメントアウトして使用してほしい
+必要に応じてコメントアウトして使用する
 
 ### 実行/デバッグ
 
@@ -133,11 +187,10 @@ Debug 時は、`appsetting.Development.json`ファイルが参照される
 2. デバッグ(release)
    `.NET Core デバッグ(Product)`を実行
 
-- ホットリロード有効
-
-- デバッグ(ホットリロード有効)
-  下記のショートカットからコマンドパレットを開き「tasks: Run task」を入力し「タスクの実行」を選択
-  表示される選択肢の中から「watch」を選択する
+- タスクから実行  
+  下記のショートカットからコマンドパレットを開き「tasks: Run task」を入力し「タスクの実行」を選択  
+  表示される選択肢の中から「watch」を選択する  
+  watch のデバッグは、ホットリロード有効
 
 ```
 ctrl + shift + P
@@ -153,11 +206,11 @@ ctrl + shift + P
 
 選択肢の中から、用途に合ったタスクを選択すると実行される
 
-- ビルド
-  Debug：`build Debug`
+- ビルド  
+  Debug：`build Debug`  
   Release：`build Release`
-- デプロイ
-  Debug：`publish Debug`
+- デプロイ  
+  Debug：`publish Debug`  
   Release：`publish Release`
 
 TODO:デプロイ

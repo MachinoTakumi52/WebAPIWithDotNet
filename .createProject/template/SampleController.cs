@@ -1,4 +1,5 @@
-using Consts;
+using PROJECT_NAME.Constants;
+using PROJECT_NAME.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PROJECT_NAME.Controllers

@@ -77,7 +77,7 @@ cd "$REQUIRED_DIR/$PROJECT_NAME"
 mkdir -p "Controllers"
 mkdir -p "Services"
 mkdir -p "Repositories"
-mkdir -p "Consts"
+mkdir -p "Constants"
 mkdir -p "Utils"
 mkdir -p "Models"
 cd "Models"
@@ -109,8 +109,8 @@ sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Controllers/BaseController.cs
 cp "$TEMPLATE_DIR"/SampleModel.cs ./Models/Entities/
 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Models/Entities/SampleModel.cs
 # EnvConsts(環境変数取得用定数)
-cp "$TEMPLATE_DIR"/EnvConsts.cs ./Consts/
-sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Consts/EnvConsts.cs
+cp "$TEMPLATE_DIR"/Constants.cs ./Constants/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Constants/Constants.cs
 # TODO request
 # TODO response
 # TODO joined
