@@ -87,8 +87,8 @@ cd "Requests"
 mkdir -p "Sample"
 cd ..
 mkdir -p "Responses"
+cd "Responses"
 mkdir -p "Sample"
-cd ..
 cd ..
 cd ..
 
@@ -144,6 +144,7 @@ cp "$TEMPLATE_DIR"/appsettings.json .
 rm "$REQUIRED_DIR/$PROJECT_NAME"/appsettings.Development.json
 cp "$TEMPLATE_DIR"/appsettings.Development.json .
 
+cd ..
 # .gitignore 作成
 dotnet new gitignore
 
@@ -178,6 +179,9 @@ done
 # TODO:存在すればプロジェクトを選択させて、そのプロジェクトにDB接続ファイルを追加する
 # TODO:DB自動生成シェルを作成してここで実行(複数のDBを使用する場合があるため)
 if $use_db_flag; then
+    
+    cd "$REQUIRED_DIR/$PROJECT_NAME"
+
     is_selected_db=false
     echo "使用するデータベースを選択:"
     
@@ -267,7 +271,7 @@ if $use_db_flag; then
             echo "Dapperパッケージのインストールに失敗しました。"
         fi
 
-        // DIExtension(依存性注入用拡張メソッド)にDB接続用のコードを追加
+        # TODO:DIExtension(依存性注入用拡張メソッド)にDB接続用のコードを追加
         
     fi
 

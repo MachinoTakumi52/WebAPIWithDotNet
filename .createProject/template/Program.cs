@@ -30,7 +30,7 @@ DependencyInjectionExtensions.AddRepositories(builder.Services);
 //DIコンテナにサービスを追加
 DependencyInjectionExtensions.AddServices(builder.Services);
 //DIコンテナにデータベース接続を追加
-DependencyInjectionExtensions.AddDataBaseConnections(builder.Services);
+// DependencyInjectionExtensions.AddDataBaseConnections(builder.Services);
 
 //  分散キャッシュ設定
 //https://noxi515.hateblo.jp/entry/2018/09/02/194901
@@ -121,7 +121,6 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
     options.RoutePrefix = string.Empty;
 });
-app.UseSwaggerUI();
 #endif
 
 //HTTP 要求をHTTPSにいダイレクトする
@@ -159,10 +158,6 @@ app.UseCookiePolicy();
 
 //セッションの有効化
 app.UseSession();
-
-//属性ルーティングコントローラをマップする
-//今回はroutingでエンドポイントにマッピングさせたのでコメントアウトした
-// app.MapControllers();
 
 //規則ルーティング(ASP.NET Core MVC や Razer Pages)の際に使用する
 //今回は属性ルーティング(WebAPI)のためいらない

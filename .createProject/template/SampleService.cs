@@ -2,7 +2,6 @@ using PROJECT_NAME.Models.Requests.Sample;
 using PROJECT_NAME.Models.Responses.Sample;
 using PROJECT_NAME.Models.Entities;
 using PROJECT_NAME.Repositories;
-using PROJECT_NAME.Utils;
 
 namespace PROJECT_NAME.Services
 {
@@ -61,22 +60,14 @@ namespace PROJECT_NAME.Services
         private readonly ISampleRepository _sampleRepository;
 
         /// <summary>
-        /// データベース接続を使用するためのフィールド
-        /// </summary>
-        private readonly DataBaseConnectionForPostgreSQL _dataBaseConnection;
-
-        /// <summary>
         /// コンストラクタ
         /// 使用したいリポジトリは、DIした後コンストラクタの引数に指定することで使用できる
         /// </summary>
         /// <param name="sampleRepository"></param>
-        public SampleService(ISampleRepository sampleRepository, DataBaseConnectionForPostgreSQL dataBaseConnection)
+        public SampleService(ISampleRepository sampleRepository)
         {
             // DIされたISampleRepositoryをフィールドに設定
             _sampleRepository = sampleRepository;
-
-            // DIされたDataBaseConnectionForPostgreSQLをフィールドに設定
-            _dataBaseConnection = dataBaseConnection;
         }
 
 
@@ -91,7 +82,7 @@ namespace PROJECT_NAME.Services
             IEnumerable<SampleEntity> resultData = _sampleRepository.ReadSamplesBy(name: requestData.Name);
 
             // サンプルリストをレスポンスのデータモデルに変換
-            IEnumerable<ReadSamplesResponse.UserModel> users = resultData.Select(x => new ReadSamplesResponse.UserModel(id: x.Id.Value, name: x.Name, age: x.Age.Value));
+            IEnumerable<ReadSamplesResponseData> users = resultData.Select(x => new ReadSamplesResponseData(id: x.Id.Value, name: x.Name, age: x.Age.Value));
 
             // 返却
             return new ReadSamplesResponse(users: users);
@@ -109,7 +100,7 @@ namespace PROJECT_NAME.Services
             IEnumerable<SampleEntityWithDivison> resultData = _sampleRepository.ReadSamplesWithDivisionBy(name: requestData.Name, divisionId: requestData.DivisionId);
 
             // サンプルリストをレスポンスのデータモデルに変換
-            IEnumerable<ReadSamplesWithDivisionResponse.UserModel> users = resultData.Select(x => new ReadSamplesWithDivisionResponse.UserModel(id: x.Id, name: x.Name, age: x.Age, division: x.Division));
+            IEnumerable<ReadSamplesWithDivisionResponseData> users = resultData.Select(x => new ReadSamplesWithDivisionResponseData(id: x.Id, name: x.Name, age: x.Age, division: x.Division));
 
             // 返却
             return new ReadSamplesWithDivisionResponse(users: users);

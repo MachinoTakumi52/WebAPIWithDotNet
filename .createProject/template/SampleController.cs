@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PROJECT_NAME.Services;
-using PROJECT_NAME.Models.Dtos.Requests.Sample;
-using PROJECT_NAME.Models.Dtos.Responses.Sample;
 using PROJECT_NAME.Utils;
-using PROJECT_NAME.Models.Requests.Sample;
+using jndf.Models.Responses.Sample;
+using jndf.Models.Requests.Sample;
 
 namespace PROJECT_NAME.Controllers
 {
