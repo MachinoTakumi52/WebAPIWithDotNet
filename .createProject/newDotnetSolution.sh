@@ -2,6 +2,7 @@
 set -e  # エラーが発生した場合、スクリプトを終了するオプション
 
 # TODO:ソリューション内にプロジェクトを追加できるようなシェルの作成
+# TODO:プロジェクトの自動作成シェル追加
 
 # テンプレートディレクトリ
 TEMPLATE_DIR="/workspace/.createProject/template"
@@ -77,16 +78,17 @@ cd "$REQUIRED_DIR/$PROJECT_NAME"
 mkdir -p "Controllers"
 mkdir -p "Services"
 mkdir -p "Repositories"
-mkdir -p "Constants"
 mkdir -p "Utils"
 mkdir -p "Models"
 cd "Models"
 mkdir -p "Entities"
-mkdir -p "Dtos"
-cd "Dtos"
 mkdir -p "Requests"
+cd "Requests"
+mkdir -p "Sample"
+cd ..
 mkdir -p "Responses"
-mkdir -p "Joined"
+mkdir -p "Sample"
+cd ..
 cd ..
 cd ..
 
@@ -105,17 +107,35 @@ sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Controllers/ErrorController.cs
 # BaseApiController
 cp "$TEMPLATE_DIR"/BaseController.cs ./Controllers/
 sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Controllers/BaseController.cs
-# サンプルModel
-cp "$TEMPLATE_DIR"/SampleModel.cs ./Models/Entities/
-sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Models/Entities/SampleModel.cs
-# EnvConsts(環境変数取得用定数)
-cp "$TEMPLATE_DIR"/Constants.cs ./Constants/
-sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Constants/Constants.cs
-# TODO request
-# TODO response
-# TODO joined
-# TODO services
-# TODO Repositories
+# サンプルサービス
+cp "$TEMPLATE_DIR"/SampleService.cs ./Services/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Services/SampleService.cs
+# サンプルリポジトリ
+cp "$TEMPLATE_DIR"/SampleRepository.cs ./Repositories/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Repositories/SampleRepository.cs
+# サンプルエンティティ
+cp "$TEMPLATE_DIR"/SampleEntity.cs ./Models/Entities/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Models/Entities/SampleEntity.cs
+# サンプルリクエスト
+cp "$TEMPLATE_DIR"/ReadSampleRequest.cs ./Models/Requests/Sample/
+cp "$TEMPLATE_DIR"/ReadSamplesWithDivisionRequest.cs ./Models/Requests/Sample/
+cp "$TEMPLATE_DIR"/CreateSampleRequest.cs ./Models/Requests/Sample/
+cp "$TEMPLATE_DIR"/UpdateSampleRequest.cs ./Models/Requests/Sample/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Models/Requests/Sample/ReadSampleRequest.cs
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Models/Requests/Sample/ReadSamplesWithDivisionRequest.cs
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Models/Requests/Sample/CreateSampleRequest.cs
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Models/Requests/Sample/UpdateSampleRequest.cs
+# サンプルレスポンス
+cp "$TEMPLATE_DIR"/ReadSampleResponse.cs ./Models/Responses/Sample/
+cp "$TEMPLATE_DIR"/ReadSamplesWithDivisionResponse.cs ./Models/Responses/Sample/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Models/Responses/Sample/ReadSampleResponse.cs
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Models/Responses/Sample/ReadSamplesWithDivisionResponse.cs
+# 定数ファイル
+cp "$TEMPLATE_DIR"/Consts.cs ./Utils/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Utils/Consts.cs
+# DIExtension(依存性注入用拡張メソッド)
+cp "$TEMPLATE_DIR"/DependencyInjectionExtensions.cs ./Utils/
+sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" ./Utils/DependencyInjectionExtensions.cs
 
 # appsettings.json 作成
 rm "$REQUIRED_DIR/$PROJECT_NAME"/appsettings.json
@@ -123,6 +143,9 @@ cp "$TEMPLATE_DIR"/appsettings.json .
 # appsettings.Development.json 作成
 rm "$REQUIRED_DIR/$PROJECT_NAME"/appsettings.Development.json
 cp "$TEMPLATE_DIR"/appsettings.Development.json .
+
+# .gitignore 作成
+dotnet new gitignore
 
 echo "テンプレートファイル作成しました。"
 
@@ -151,6 +174,9 @@ done
 
 # データベース選択処理（使用する場合のみ）
 # createDBConnection.shを実行
+# TODO: 依存性の注入の自動生成
+# TODO:存在すればプロジェクトを選択させて、そのプロジェクトにDB接続ファイルを追加する
+# TODO:DB自動生成シェルを作成してここで実行(複数のDBを使用する場合があるため)
 if $use_db_flag; then
     is_selected_db=false
     echo "使用するデータベースを選択:"
@@ -240,6 +266,9 @@ if $use_db_flag; then
         else
             echo "Dapperパッケージのインストールに失敗しました。"
         fi
+
+        // DIExtension(依存性注入用拡張メソッド)にDB接続用のコードを追加
+        
     fi
 
 fi

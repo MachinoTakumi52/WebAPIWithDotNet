@@ -1,5 +1,7 @@
 
 //builder生成
+using PROJECT_NAME.Utils;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // 作成したコントローラを追加して使用できるように
@@ -22,6 +24,13 @@ builder.Services.AddControllers();
 //swaggerを使うための設定
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
+
+// DIコンテナにリポジトリを追加
+DependencyInjectionExtensions.AddRepositories(builder.Services);
+//DIコンテナにサービスを追加
+DependencyInjectionExtensions.AddServices(builder.Services);
+//DIコンテナにデータベース接続を追加
+DependencyInjectionExtensions.AddDataBaseConnections(builder.Services);
 
 //  分散キャッシュ設定
 //https://noxi515.hateblo.jp/entry/2018/09/02/194901

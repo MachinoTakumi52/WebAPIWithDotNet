@@ -7,6 +7,7 @@ TEMPLATE_DIR="/workspace/.createProject/template"
 # プロジェクト名
 # TODO:既に存在するか
 # TODO:存在すればプロジェクトを選択させて、そのプロジェクトにDB接続ファイルを追加する
+# TODO:DB自動生成シェルを作成してここで実行(複数のDBを使用する場合があるため)
 PROJECT_NAME=""
 
 is_selected_db=false

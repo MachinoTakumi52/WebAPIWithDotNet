@@ -2,7 +2,6 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using Microsoft.Data.SqlClient;
 using Dapper;
-using PROJECT_NAME.Consts;
 
 namespace PROJECT_NAME.Utils
 {

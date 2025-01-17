@@ -1,7 +1,6 @@
 using System.Data;
 using Npgsql;
 using Dapper;
-using PROJECT_NAME.Consts;
 
 namespace PROJECT_NAME.Utils
 {

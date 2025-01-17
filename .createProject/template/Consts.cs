@@ -1,4 +1,5 @@
-﻿namespace PROJECT_NAME.Constants
+// 種類毎に定数を定義
+namespace PROJECT_NAME.Utils
 {
     /// <summary>
     /// 環境変数取得用のキーを定義する定数クラス

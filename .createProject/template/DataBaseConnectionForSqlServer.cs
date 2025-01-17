@@ -1,7 +1,6 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 using Dapper;
-using PROJECT_NAME.Consts;
 
 namespace PROJECT_NAME.Utils
 {
