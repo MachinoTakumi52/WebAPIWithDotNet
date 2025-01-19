@@ -51,9 +51,6 @@ dotnet sln add "$PROJECT_NAME/$PROJECT_NAME.csproj"
 
 echo "プロジェクトが作成されました。"
 
-# Swagger  アノテーションを有効するためのパッケージをインストール
-dotnet add package Swashbuckle.AspNetCore.Annotations
-
 # デバッグ用の設定ファイルを作成
 
 VS_CODE_DIR=".vscode"
@@ -150,6 +147,9 @@ cp "$TEMPLATE_DIR"/appsettings.Development.json .
 cd ..
 # .gitignore 作成
 dotnet new gitignore
+
+# Swagger  アノテーションを有効するためのパッケージをインストール
+dotnet add package Swashbuckle.AspNetCore.Annotations
 
 echo "テンプレートファイル作成しました。"
 
