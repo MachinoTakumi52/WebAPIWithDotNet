@@ -1,0 +1,38 @@
+{
+  "name": "${localWorkspaceFolderBasename}",
+  "dockerComposeFile": "./docker/Compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // 改行コードを設定
+        "files.eol": "\n",
+        // 保存時にフォーマット
+        "editor.formatOnSave": true,
+        // prettier設定
+        "prettier.printWidth": 200,
+        // jsonはvscodeのフォーマッターを利用
+        "[json]": {
+          "editor.defaultFormatter": "vscode.json-language-features"
+        },
+      },
+      "extensions": [
+        // vscode日本語化
+        "MS-CEINTL.vscode-language-pack-ja",
+        // フォーマッター
+        "esbenp.prettier-vscode",
+        // C#拡張機能
+        "ms-dotnettools.csharp",
+        // C# Dev Kit拡張機能
+        "ms-dotnettools.csdevkit",
+        // C# Extention
+        "kreativ-software.csharpextensions",
+        // git
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "eamodio.gitlens"
+      ]
+    }
+  }
+}

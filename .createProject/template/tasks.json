@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build Debug",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build","-c", "Debug", "${workspaceFolder}/PROJECT_NAME/PROJECT_NAME.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build Release",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build","-c", "Release", "${workspaceFolder}/PROJECT_NAME/PROJECT_NAME.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "publish Debug",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["publish","-c", "Debug", "${workspaceFolder}/$PROJECT_NAME/PROJECT_NAME.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish Release",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["publish","-c", "Release", "${workspaceFolder}/$PROJECT_NAME/PROJECT_NAME.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch", // ホットリロード用タスク
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "--project",
+        "${workspaceFolder}/PROJECT_NAME/PROJECT_NAME.csproj" // プロジェクトフォルダ
+      ],
+      "isBackground": true, // バックグラウンドで実行
+      "problemMatcher": {
+        "base": "$msCompile",
+        "background": {
+          "activeOnStart": true, // タスク開始時にアクティブ化
+          "beginsPattern": "^watch : Started$",
+          "endsPattern": "^watch : Waiting$"
+        }
+      }
+    }
+  ]
+}

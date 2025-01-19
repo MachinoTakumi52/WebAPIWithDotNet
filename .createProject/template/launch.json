@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Coreデバッグ(Development)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build Debug",
+      "program": "${workspaceFolder}/PROJECT_NAME/bin/Debug/FRAMEWORK_VERSION/PROJECT_NAME.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/PROJECT_NAME",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      // Web API起動後の自動ブラウザ起動設定
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on: (https?://\\S+)"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": ".NET Coreデバッグ(Product)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build Release",
+      "program": "${workspaceFolder}/PROJECT_NAME/bin/Release/FRAMEWORK_VERSION/PROJECT_NAME.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/PROJECT_NAME",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      // Web API起動後の自動ブラウザ起動設定
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on: (https?://\\S+)"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    }
+  ]
+}
