@@ -19,6 +19,12 @@ devcontainer → docker → Dockerfile 内「dotnet sdk 設定」に使用した
 /workspace/.createProject/newDotnetSolution.sh
 ```
 
+※実行権限がなく実行できない時は、以下のコマンドを実行
+
+```sh
+chmod +x /workspace/.createProject/newDotnetSolution.sh
+```
+
 ### ウィンドの再読み込み
 
 下記のショートカットからコマンドパレットを開き「reload Window」を入力し「開発者：ウィンドウの再読み込み」を選択
@@ -30,15 +36,13 @@ ctrl + shift + P
 ## 開発について
 
 - ソリューションエキスプローラー
-  vscode の左にあるエキスプローラータブに`SOLUTION EXPLORER`タブが存在するので、こちらを開いて開発していく  
-  ※`WORKSPACE`タブでもいいが、visual studio のエキスプローラーに近いのは`SOLUTION EXPLORER`なのでこちらをお勧めする
+  vscode の左にあるエキスプローラータブに`solution explorer`タブが存在するので、こちらを開いて開発していく  
+  ※`workSpace`タブでもいいが、visual studio のエキスプローラーに近いのは`solution explorer`なのでこちらをお勧めする
 
 ### フォルダ構成
 
 ```bash
 solutionName
-|
-|__Constants 定数フォルダ TODO:enum定数定義
 |
 |__Controllers コントローラー
 |
@@ -151,12 +155,12 @@ solutionName
 
 ### ライブラリの追加
 
-- dotnet コマンドによる追加  
+- `dotnet` コマンドによる追加  
   vsCode のコンソールを開きパッケージを追加したいプロジェクトまで移動  
-  dotnet コマンドを用いて nuget からパッケージを追加
+  `dotnet` コマンドを用いて `nuget` からパッケージを追加
 
-- solution explorer タブから追加  
-  solution explorer タブからパッケージを追加したいプロジェクトを右クリックし`Add Nuget Pakage`を選択  
+- `solution explorer` タブから追加  
+  `solution explorer` タブからパッケージを追加したいプロジェクトを右クリックし`Add Nuget Pakage`を選択  
   検索欄が開かれるので、追加したいパッケージを入力  
   入力条件に当てはまるパッケージが表示されるので該当するものを選択してパッケージを追加
 
@@ -166,12 +170,12 @@ https://www.nuget.org/
 
 ### ファイル追加(C# Extention 拡張機能使用)
 
-- workSpace タブからの追加
+- `workSpace` タブからの追加
   Explorer タブから新規作成ファイルを配置するフォルダを選択して右クリックし`New C#`を選択  
   Class や Interface などテンプレートが作成できるので、該当するものを選択  
   上部ヘッダーにファイル名を入力すると新しいファイルが作成される
 
-- solution explorer タブからの追加  
+- `solution explorer` タブからの追加  
   Explorer タブから新規作成ファイルを配置するフォルダを選択して右クリックし`New File`を選択
   Class や Interface などテンプレートが作成できるので、該当するものを選択  
   上部ヘッダーにファイル名を入力すると新しいファイルが作成される
@@ -180,7 +184,7 @@ https://www.nuget.org/
 
 Release 時は、`appsetting.json`ファイルが参照される  
 Debug 時は、`appsetting.Development.json`ファイルが参照される  
-環境変数を追加する際は、上記のファイルに環境変数を定義後`EnvConsts`ファイルに取得するためのキーを定数として  
+環境変数を追加する際は、上記のファイルに環境変数を定義後`Consts`ファイルの`EnvConsts`クラスに取得するためのキーを定数として  
 定義システム内で使用する際は、IConfiguration を DI する  
 詳しくは、`sampleController.cs`にやり方を記載
 
@@ -209,21 +213,32 @@ Debug 時は、`appsetting.Development.json`ファイルが参照される
 ctrl + shift + P
 ```
 
-## ビルド/デプロイ
+## ビルド
 
-下記のショートカットからコマンドパレットを開き「tasks: Run task」を入力し「タスクの実行」を選択
+- `SOLUTION EXPLORER`タブからビルド  
+  vsCode の下部の`Any CPU`から`Debug`と`Release`を切り替え可能  
+  ビルドしたプロジェクトを右クリックして`ビルド`を選択
+
+- タスクからビルド
+  下記のショートカットからコマンドパレットを開き「tasks: Run task」を入力し「タスクの実行」を選択
 
 ```
 ctrl + shift + P
 ```
 
-選択肢の中から、用途に合ったタスクを選択すると実行される
+下記の選択肢の中から選択  
+Debug：`build Debug`  
+Release：`build Release`
 
-- ビルド  
-  Debug：`build Debug`  
-  Release：`build Release`
-- デプロイ  
-  Debug：`publish Debug`  
-  Release：`publish Release`
+## デプロイ
 
-TODO:デプロイ
+- タスクからデプロイ
+  下記のショートカットからコマンドパレットを開き「tasks: Run task」を入力し「タスクの実行」を選択
+
+```
+ctrl + shift + P
+```
+
+下記の選択肢の中から選択  
+Debug：`publish Debug`  
+Release：`publish Release`

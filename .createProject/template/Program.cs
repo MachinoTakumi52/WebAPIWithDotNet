@@ -22,8 +22,15 @@ builder.Services.AddControllers();
 // });
 
 //swaggerを使うための設定
-builder.Services.AddSwaggerGen();
+#if DEBUG
+// Swagger のサービスを追加
+builder.Services.AddSwaggerGen(options =>
+{
+    // アノテーションのサポートを有効化
+    options.EnableAnnotations();
+});
 builder.Services.AddEndpointsApiExplorer();
+#endif
 
 // DIコンテナにリポジトリを追加
 DependencyInjectionExtensions.AddRepositories(builder.Services);

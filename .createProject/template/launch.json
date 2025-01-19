@@ -27,7 +27,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build Release",
-      "program": "${workspaceFolder}/PROJECT_NAME/bin/Debug/FRAMEWORK_VERSION/PROJECT_NAME.dll",
+      "program": "${workspaceFolder}/PROJECT_NAME/bin/Release/FRAMEWORK_VERSION/PROJECT_NAME.dll",
       "args": [],
       "cwd": "${workspaceFolder}/PROJECT_NAME",
       "stopAtEntry": false,
@@ -42,6 +42,6 @@
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
       }
-    },
+    }
   ]
 }
