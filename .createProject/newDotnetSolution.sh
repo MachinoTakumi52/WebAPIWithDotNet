@@ -148,8 +148,12 @@ cd ..
 # .gitignore 作成
 dotnet new gitignore
 
+cd "$REQUIRED_DIR/$PROJECT_NAME"
 # Swagger  アノテーションを有効するためのパッケージをインストール
 dotnet add package Swashbuckle.AspNetCore.Annotations
+
+cd ..
+cd ..
 
 echo "テンプレートファイル作成しました。"
 
