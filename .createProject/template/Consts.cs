@@ -1,4 +1,4 @@
-// 種類毎に定数を定義
+// 種類毎にクラスを切り定数を定義
 namespace PROJECT_NAME.Utils;
 
 /// <summary>

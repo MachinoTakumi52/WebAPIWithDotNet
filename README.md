@@ -42,25 +42,64 @@ ctrl + shift + P
 ### フォルダ構成
 
 ```bash
-solutionName
-|
-|__Controllers コントローラー
-|
-|__Services サービス
-|
-|__Repositories リポジトリ
-|
-|__Models モデル
-|　|
-|　|__Requests リクエストモデル
-|　|
-|　|__Responses レスポンスモデル
-|  |
-|  |__Entities データベースとのマッピングモデル
-|
-|__Properties デバッグ設定ファイル格納フォルダ
-|
-|__Utils 共通で使用する関数ファイルや定数ファイルなどを格納するフォルダ
+FolderName
+│  .gitignore # ignoreファイル
+│  SolutionName.sln # ソリューションファイル
+│  README.md # READMEファイル
+│
+├─.devcontainer # Docker関係フォルダ
+│  │  devcontainer.json
+│  │
+│  └─docker
+│          Compose.yml
+│          Dockerfile
+│
+├─.vscode # vscodeでのデバッグ設定フォルダ
+│      launch.json
+│      settings.json
+│      tasks.json
+│
+└─ProjectName # プロジェクトフォルダ
+    │  appsettings.Development.json # 環境変数ファイル(開発)
+    │  appsettings.json # 環境変数ファイル(本番)
+    │  ProjectName.csproj # プロジェクトファイル
+    │  ProjectName.http # 簡易テストファイル
+    │  Program.cs # エントリーファイル
+    │
+    ├─Controllers # コントローラーフォルダ
+    │      BaseController.cs # 共通コントローラーファイル
+    │      ErrorController.cs # 共通エラーハンドリングコントローラーファイル
+    │      SampleController.cs # サンプルコントローラーファイル
+    │
+    ├─Models # モデルフォルダ
+    │  ├─Entities # エンティティフォルダ
+    │  │      SampleEntity.cs # サンプルエンティティファイル
+    │  │
+    │  ├─Requests # リクエストフォルダ
+    │  │  └─Sample
+    │  │          CreateSampleRequest.cs
+    │  │          ReadSampleRequest.cs
+    │  │          ReadSamplesWithDivisionRequest.cs
+    │  │          UpdateSampleRequest.cs
+    │  │
+    │  └─Responses # レスポンスフォルダ
+    │      └─Sample
+    │              ReadSampleResponse.cs
+    │              ReadSamplesWithDivisionResponse.cs
+    │
+    ├─Properties # デバッグ設定(visual studio用)フォルダ
+    │      launchSettings.json # デバッグ設定(visual studio用)ファイル
+    │
+    ├─Repositories # リポジトリフォルダ
+    │      SampleRepository.cs # サンプルリポジトリファイル
+    │
+    ├─Services # サービスフォルダ
+    │      SampleService.cs # サンプルサービスフォルダ
+    │
+    └─Utils # ユーティリティフォルダ
+            Consts.cs # 定数ファイル
+            DataBaseConnection.cs # DB接続共通ファイル
+            DependencyInjectionExtensions.cs # DI共通ファイル
 ```
 
 ### 三層アーキテクチャ（Three-Tier Architecture）
