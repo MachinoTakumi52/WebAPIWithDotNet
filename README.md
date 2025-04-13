@@ -234,6 +234,10 @@ Debug 時は、`appsetting.Development.json`ファイルが参照される
 詳しい内容は、ファイル内にコメントで記載してあるので  
 必要に応じてコメントアウトして使用する
 
+### 開発ルール
+
+開発ルールは、[バックエンドコーディング規約](https://zenn.dev/takumi_machino/articles/dotnet-webapi)を参照。
+
 ### 実行/デバッグ
 
 - `実行とデバッグ`タブから用途に合わせて実行
