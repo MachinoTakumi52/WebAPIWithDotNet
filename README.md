@@ -4,7 +4,7 @@
 
 ### dotnet version 設定
 
-devcontainer → docker → Dockerfile 内「dotnet sdk 設定」に使用したいバージョンを設定
+devcontainer → docker → Dockerfile 内「dotnet sdk 設定」に使用したいバージョンを設定しコンテナを起動
 
 ```Dockerfile
   # dotnet sdk設定                   ↓ここ
@@ -35,9 +35,9 @@ ctrl + shift + P
 
 ## 開発について
 
-- ソリューションエキスプローラー
-  vscode の左にあるエキスプローラータブに`solution explorer`タブが存在するので、こちらを開いて開発していく  
-  ※`workSpace`タブでもいいが、visual studio のエキスプローラーに近いのは`solution explorer`なのでこちらをお勧めする
+- ソリューションエクスプローラー
+  vscode の左にあるエクスプローラータブに`solution explorer`タブが存在するので、こちらを開いて開発していく  
+  ※`workSpace`タブでもいいが、visual studio のエクスプローラーに近いのは`solution explorer`なのでこちらをお勧めする
 
 ### フォルダ構成
 
